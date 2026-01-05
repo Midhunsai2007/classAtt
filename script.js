@@ -24,6 +24,44 @@ document.getElementById("subjectSelect").addEventListener("change", function () 
     }
 });
 
+function searchStudent() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toUpperCase();
+    const trs = document.getElementById("body").getElementsByTagName("tr");
+
+    for (let i = 0; i < trs.length; i++) {
+        const regTd = trs[i].getElementsByTagName("td")[0];
+        const nameTd = trs[i].getElementsByTagName("td")[1];
+        if (regTd || nameTd) {
+            const regTxt = regTd.textContent || regTd.innerText;
+            const nameTxt = nameTd.textContent || nameTd.innerText;
+            if (regTxt.toUpperCase().indexOf(filter) > -1 || nameTxt.toUpperCase().indexOf(filter) > -1) {
+                trs[i].style.display = "";
+            } else {
+                trs[i].style.display = "none";
+            }
+        }
+    }
+}
+
+function resetAttendance() {
+    if (!confirm("Are you sure you want to RESET all attendance data?")) return;
+
+    const buttons = document.querySelectorAll("button.present, button.absent");
+    buttons.forEach(btn => {
+        btn.className = "present";
+        btn.textContent = "Present";
+    });
+
+    presentCount = students.length;
+    absentCount = 0;
+    absentRegs.clear();
+
+    document.getElementById("present").textContent = presentCount;
+    document.getElementById("absent").textContent = absentCount;
+    document.getElementById("absentList").textContent = "None";
+}
+
 function submitAttendance() {
     if (!selectedSubject) {
         alert("Please select a Subject first!");
@@ -35,6 +73,8 @@ function submitAttendance() {
         alert("Please select a Date!");
         return;
     }
+
+    if (!confirm("Are you sure you want to Submit Attendance?")) return;
 
     const durationVal = document.getElementById("durationSelect").value;
 

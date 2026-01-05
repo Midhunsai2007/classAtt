@@ -26,6 +26,16 @@
             background: #d63031;
         }
 
+        .copy-btn {
+            margin-top: 20px;
+            margin-left: 10px;
+            background: #00b894;
+        }
+
+        .copy-btn:hover {
+            background: #00cec9;
+        }
+
         .header-info {
             text-align: center;
             margin-bottom: 30px;
@@ -79,6 +89,7 @@
         <div style="text-align:center">
             <button class="subject-btn back-btn" onclick="window.location.href='index.html'">Go Back</button>
             <button class="subject-btn print-btn" onclick="window.print()">Print List</button>
+            <button class="subject-btn copy-btn" onclick="copyToClipboard()">Copy for WhatsApp</button>
         </div>
     </div>
 
@@ -91,6 +102,7 @@
             }
 
             const data = JSON.parse(dataStr);
+            window.attendanceData = data; // Make accessible to copy function
 
             // Display Header Info
             const dateObj = new Date(data.date);
@@ -122,6 +134,30 @@
                 });
             }
         };
+
+        function copyToClipboard() {
+            const data = window.attendanceData;
+            if (!data || data.absentees.length === 0) {
+                alert("No absentees to copy!");
+                return;
+            }
+
+            const dateObj = new Date(data.date);
+            const dateStr = dateObj.toLocaleDateString('en-GB'); // DD/MM/YYYY format commonly used in India
+
+            let text = `*Attendance Report*\nDate: ${dateStr}\nSubject: ${data.subject}\n\n*Absentees:*\n`;
+
+            data.absentees.forEach(s => {
+                text += `${s.r} - ${s.n}\n`;
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied to Clipboard! You can now paste in WhatsApp.");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert("Failed to copy automatically.");
+            });
+        }
     </script>
 
 </body>
