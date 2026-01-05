@@ -1,7 +1,22 @@
+// Set Current Date
+window.onload = function() {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("currentDate").textContent = new Date().toLocaleDateString('en-US', options);
+};
+
 function toggleSubjects(){
     const s = document.getElementById("subjectSelect");
     s.style.display = s.style.display === "none" ? "block" : "none";
 }
+
+// Subject Selection Logic
+document.getElementById("subjectSelect").addEventListener("change", function() {
+    const btn = document.querySelector(".subject-btn");
+    if(this.value !== "Select Subject") {
+        btn.textContent = "Subject: " + this.value;
+        this.style.display = "none"; // Hide after selection
+    }
+});
 
 const students = [
 {r:"99240040066",n:"JUJJAVARAPU RISHYENDRA"},

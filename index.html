@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Kalasalingam University - Attendance</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Kalasalingam University - Attendance</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="glass">
+    <div class="glass">
 
-<div class="main-title">Kalasalingam University</div>
-<div class="sub-title">24S11 Section</div>
-<div class="att-title">Attendance Sheet</div>
+        <div class="main-title">Kalasalingam University</div>
 
-<div class="subject-box">
-    <button class="subject-btn" onclick="toggleSubjects()">Subject</button>
-    <select id="subjectSelect" style="display:none">
-        <option>Select Subject</option>
-        <option>Discrete Mathematics</option>
-        <option>DBMS</option>
-        <option>Predictive Analysis</option>
-        <option>Machine Learning</option>
-        <option>Software Engineering</option>
-    </select>
-</div>
+        <div class="main-title">24S11 Section</div>
+        <div class="date-display" id="currentDate"></div>
+        <div class="att-title">Attendance Sheet</div>
 
-<table>
-<thead>
-<tr>
-<th>Register Number</th>
-<th>Name</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody id="body"></tbody>
-</table>
+        <div class="subject-box">
+            <button class="subject-btn" onclick="toggleSubjects()">Subject</button>
+            <select id="subjectSelect" style="display:none">
+                <option>Select Subject</option>
+                <option>Discrete Mathematics</option>
+                <option>DBMS</option>
+                <option>Predictive Analysis</option>
+                <option>Machine Learning</option>
+                <option>Software Engineering</option>
+            </select>
+        </div>
 
-<div class="summary">
-Present: <span id="present">0</span> |
-Absent: <span id="absent">0</span>
-</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Register Number</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="body"></tbody>
+        </table>
 
-<div class="absent-list">
-<h3>Absent Register Numbers</h3>
-<p id="absentList">None</p>
-</div>
+        <div class="summary">
+            Present: <span id="present">0</span> |
+            Absent: <span id="absent">0</span>
+        </div>
 
-</div>
+        <div class="absent-list">
+            <h3>Absent Register Numbers</h3>
+            <p id="absentList">None</p>
+        </div>
 
-<script src="script.js"></script>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
