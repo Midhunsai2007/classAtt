@@ -3,6 +3,7 @@ body {
     padding: 40px;
     font-family: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
     min-height: 100vh;
     color: #2d3436;
 }
