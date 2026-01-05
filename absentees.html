@@ -113,6 +113,7 @@
             document.getElementById("headerInfo").innerHTML = `
             Date: <strong>${dateReadable}</strong> <br>
             Subject: <strong>${data.subject}</strong> <br>
+            Faculty: <strong>${data.faculty}</strong> &nbsp;|&nbsp; Code: <strong>${data.code}</strong> <br>
             Duration: <strong>${durationText}</strong>
         `;
 
@@ -145,7 +146,7 @@
             const dateObj = new Date(data.date);
             const dateStr = dateObj.toLocaleDateString('en-GB'); // DD/MM/YYYY format commonly used in India
 
-            let text = `*Attendance Report*\nDate: ${dateStr}\nSubject: ${data.subject}\n\n*Absentees:*\n`;
+            let text = `*Attendance Report*\nDate: ${dateStr}\nSubject: ${data.subject}\nFaculty: ${data.faculty} (${data.code})\n\n*Absentees:*\n`;
 
             data.absentees.forEach(s => {
                 text += `${s.r} - ${s.n}\n`;

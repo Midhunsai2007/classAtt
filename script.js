@@ -111,10 +111,14 @@ function submitAttendance() {
     // We used 'students' array which is available in global scope
     const absentees = students.filter(s => absentRegs.has(s.r));
 
+    const details = subjectDetails[selectedSubject] || { code: "", faculty: "" };
+
     const data = {
         date: dateVal,
         subject: selectedSubject,
         duration: durationVal,
+        faculty: details.faculty,
+        code: details.code,
         absentees: absentees
     };
 
