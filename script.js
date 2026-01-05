@@ -18,6 +18,15 @@ function scrollToBottom() {
 // Subject Selection Storage
 let selectedSubject = "";
 
+// Faculty Data Map
+const subjectDetails = {
+    "Discrete Mathematics": { code: "212CSE2101", faculty: "Dr. G. CHITRA" },
+    "DBMS": { code: "212CSE2305", faculty: "Dr. M. K. NAGARAJAN" }, // Mapped from 'Database Management Systems'
+    "Predictive Analysis": { code: "213CSE2301", faculty: "Mrs. P. KALAIARASI" },
+    "Machine Learning": { code: "212CSE2304", faculty: "Mrs. A. M. GURUSIGAAMANI" },
+    "Software Engineering": { code: "212CSE2303", faculty: "Ms. Sujitha S" }
+};
+
 function toggleSubjects() {
     const s = document.getElementById("subjectSelect");
     s.style.display = s.style.display === "none" ? "block" : "none";
@@ -26,10 +35,21 @@ function toggleSubjects() {
 // Subject Selection Logic
 document.getElementById("subjectSelect").addEventListener("change", function () {
     const btn = document.querySelector(".subject-btn");
+    const infoBox = document.getElementById("facultyInfo");
+
     if (this.value !== "Select Subject") {
         selectedSubject = this.value; // Store for submission
         btn.textContent = "Subject: " + this.value;
         this.style.display = "none";
+
+        // Update Faculty Info
+        const details = subjectDetails[this.value];
+        if (details) {
+            infoBox.style.display = "block";
+            infoBox.innerHTML = `Faculty: <span>${details.faculty}</span> &nbsp;|&nbsp; Code: <span>${details.code}</span>`;
+        } else {
+            infoBox.style.display = "none";
+        }
     }
 });
 
