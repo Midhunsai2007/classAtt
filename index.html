@@ -14,7 +14,7 @@
         <div class="main-title">Kalasalingam University</div>
 
         <div class="main-title">24S11 Section</div>
-        <div class="date-display" id="currentDate"></div>
+        <input type="date" id="dateInput" class="date-input">
         <div class="att-title">Attendance Sheet</div>
 
         <div class="subject-box">
@@ -44,6 +44,8 @@
             Present: <span id="present">0</span> |
             Absent: <span id="absent">0</span>
         </div>
+
+        <button class="submit-btn" onclick="submitAttendance()">Submit Attendance</button>
 
         <div class="absent-list">
             <h3>Absent Register Numbers</h3>

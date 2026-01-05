@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absentees List</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .back-btn {
+            margin-top: 20px;
+            background: #636e72;
+        }
+
+        .back-btn:hover {
+            background: #2d3436;
+        }
+
+        .print-btn {
+            margin-top: 20px;
+            margin-left: 10px;
+            background: #e17055;
+        }
+
+        .print-btn:hover {
+            background: #d63031;
+        }
+
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 500;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-info strong {
+            color: #6c5ce7;
+        }
+
+        .empty-msg {
+            text-align: center;
+            font-size: 20px;
+            color: #00b894;
+            font-weight: bold;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glass">
+        <div class="main-title">Absentees List</div>
+
+        <div id="headerInfo" class="header-info">
+            <!-- Date and Subject will be Injected Here -->
+        </div>
+
+        <!-- Reusing table style from style.css -->
+        <table id="absenteesTable">
+            <thead>
+                <tr>
+                    <th>Register Number</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody id="listBody">
+                <!-- Rows injected here -->
+            </tbody>
+        </table>
+
+        <div id="emptyMsg" class="empty-msg" style="display:none">
+            No Absentees! Everyone is Present. 🎉
+        </div>
+
+        <div style="text-align:center">
+            <button class="subject-btn back-btn" onclick="window.location.href='index.html'">Go Back</button>
+            <button class="subject-btn print-btn" onclick="window.print()">Print List</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const dataStr = localStorage.getItem("attendanceData");
+            if (!dataStr) {
+                document.getElementById("headerInfo").innerHTML = "No data found. Please go back and submit attendance.";
+                return;
+            }
+
+            const data = JSON.parse(dataStr);
+
+            // Display Header Info
+            const dateObj = new Date(data.date);
+            const dateReadable = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+            document.getElementById("headerInfo").innerHTML = `
+            Date: <strong>${dateReadable}</strong> <br>
+            Subject: <strong>${data.subject}</strong>
+        `;
+
+            const tbody = document.getElementById("listBody");
+            const table = document.getElementById("absenteesTable");
+            const emptyMsg = document.getElementById("emptyMsg");
+
+            if (data.absentees.length === 0) {
+                table.style.display = "none";
+                emptyMsg.style.display = "block";
+            } else {
+                data.absentees.forEach(s => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                    <td class="reg">${s.r}</td>
+                    <td class="name">${s.n}</td>
+                `;
+                    tbody.appendChild(tr);
+                });
+            }
+        };
+    </script>
+
+</body>
+
+</html>
