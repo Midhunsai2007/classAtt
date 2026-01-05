@@ -6,6 +6,15 @@ window.onload = function () {
     document.getElementById("dateInput").value = dateStr;
 };
 
+// Scroll Functions
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
 // Subject Selection Storage
 let selectedSubject = "";
 
