@@ -7,7 +7,6 @@ body{
     color:#4a0033;
 }
 
-/* Glass container */
 .glass{
     background:rgba(255,255,255,0.45);
     backdrop-filter:blur(15px);
@@ -16,7 +15,6 @@ body{
     box-shadow:0 20px 50px rgba(255,105,180,0.3);
 }
 
-/* Headings */
 .main-title{
     text-align:center;
     font-size:32px;
@@ -35,7 +33,6 @@ body{
     margin-bottom:20px;
 }
 
-/* Subject selector */
 .subject-box{
     display:flex;
     align-items:center;
@@ -60,7 +57,6 @@ select{
     font-weight:bold;
 }
 
-/* Table */
 table{
     width:100%;
     border-collapse:collapse;
@@ -76,7 +72,6 @@ td{
     text-align:center;
 }
 
-/* Styled reg & name */
 .reg{
     font-weight:bold;
     color:#b30059;
@@ -87,7 +82,6 @@ td{
     color:#660033;
 }
 
-/* Buttons */
 button{
     padding:6px 16px;
     border:none;
@@ -105,10 +99,28 @@ button{
     background:#e74c3c;
 }
 
-/* Summary */
 .summary{
     margin-top:20px;
     text-align:center;
     font-size:18px;
     font-weight:bold;
+}
+
+.absent-list{
+    margin-top:20px;
+    padding:15px;
+    background:rgba(255,255,255,0.6);
+    border-radius:15px;
+    text-align:center;
+}
+
+.absent-list h3{
+    margin-bottom:8px;
+    color:#b30059;
+}
+
+.absent-list p{
+    font-weight:bold;
+    color:#660033;
+    word-wrap:break-word;
 }

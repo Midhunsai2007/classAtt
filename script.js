@@ -77,8 +77,10 @@ const students = [
 
 let presentCount = students.length;
 let absentCount = 0;
+const absentRegs = new Set();
 
 const body = document.getElementById("body");
+const absentListEl = document.getElementById("absentList");
 
 students.forEach(s=>{
     const tr = document.createElement("tr");
@@ -87,6 +89,7 @@ students.forEach(s=>{
         <td class="name">${s.n}</td>
         <td><button class="present">Present</button></td>
     `;
+
     const btn = tr.querySelector("button");
     btn.onclick = ()=>{
         if(btn.classList.contains("present")){
@@ -94,15 +97,20 @@ students.forEach(s=>{
             btn.textContent = "Absent";
             presentCount--;
             absentCount++;
+            absentRegs.add(s.r);
         }else{
             btn.className = "present";
             btn.textContent = "Present";
             presentCount++;
             absentCount--;
+            absentRegs.delete(s.r);
         }
+
         document.getElementById("present").textContent = presentCount;
         document.getElementById("absent").textContent = absentCount;
+        absentListEl.textContent = absentRegs.size ? [...absentRegs].join(", ") : "None";
     };
+
     body.appendChild(tr);
 });
 
