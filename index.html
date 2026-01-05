@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kalasalingam University - Attendance</title>
+
+<!-- Link CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="glass">
+
+<div class="main-title">Kalasalingam University</div>
+<div class="sub-title">24S11 Section</div>
+<div class="att-title">Attendance Sheet</div>
+
+<div class="subject-box">
+    <button class="subject-btn" onclick="toggleSubjects()">Subject</button>
+    <select id="subjectSelect" style="display:none">
+        <option>Select Subject</option>
+        <option>Discrete Mathematics</option>
+        <option>DBMS</option>
+        <option>Predictive Analysis</option>
+        <option>Machine Learning</option>
+        <option>Software Engineering</option>
+    </select>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Register Number</th>
+<th>Name</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="body"></tbody>
+</table>
+
+<div class="summary">
+Present: <span id="present">0</span> |
+Absent: <span id="absent">0</span>
+</div>
+
+</div>
+
+<!-- Link JS -->
+<script src="script.js"></script>
+
+</body>
+</html>

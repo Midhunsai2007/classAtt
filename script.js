@@ -1,172 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Kalasalingam University - Attendance</title>
-
-<style>
-body{
-    margin:0;
-    padding:20px;
-    font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(135deg,#ffd1dc,#ffe6f0,#fbc2eb);
-    min-height:100vh;
-    color:#4a0033;
-}
-
-/* Glass container */
-.glass{
-    background:rgba(255,255,255,0.45);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 20px 50px rgba(255,105,180,0.3);
-}
-
-/* Headings */
-.main-title{
-    text-align:center;
-    font-size:32px;
-    font-weight:bold;
-}
-
-.sub-title{
-    text-align:center;
-    font-size:20px;
-    margin-bottom:10px;
-}
-
-.att-title{
-    text-align:center;
-    font-size:22px;
-    margin-bottom:20px;
-}
-
-/* Subject selector */
-.subject-box{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    margin-bottom:15px;
-}
-
-.subject-btn{
-    background:#ff5fa2;
-    color:white;
-    padding:8px 18px;
-    border:none;
-    border-radius:25px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-select{
-    padding:8px 15px;
-    border-radius:20px;
-    border:none;
-    font-weight:bold;
-}
-
-/* Table */
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    background:rgba(255,182,193,0.6);
-    padding:12px;
-}
-
-td{
-    padding:10px;
-    text-align:center;
-}
-
-/* Styled reg & name */
-.reg{
-    font-weight:bold;
-    color:#b30059;
-}
-
-.name{
-    font-weight:600;
-    color:#660033;
-}
-
-/* Buttons */
-button{
-    padding:6px 16px;
-    border:none;
-    border-radius:20px;
-    font-weight:bold;
-    cursor:pointer;
-    color:white;
-}
-
-.present{
-    background:#2ecc71;
-}
-
-.absent{
-    background:#e74c3c;
-}
-
-/* Summary */
-.summary{
-    margin-top:20px;
-    text-align:center;
-    font-size:18px;
-    font-weight:bold;
-}
-</style>
-</head>
-
-<body>
-
-<div class="glass">
-
-<div class="main-title">Kalasalingam University</div>
-<div class="sub-title">24S11 Section</div>
-<div class="att-title">Attendance Sheet</div>
-
-<div class="subject-box">
-    <button class="subject-btn" onclick="toggleSubjects()">Subject</button>
-    <select id="subjectSelect" style="display:none">
-        <option>Select Subject</option>
-        <option>Discrete Mathematics</option>
-        <option>DBMS</option>
-        <option>Predictive Analysis</option>
-        <option>Machine Learning</option>
-        <option>Software Engineering</option>
-    </select>
-</div>
-
-<table>
-<thead>
-<tr>
-<th>Register Number</th>
-<th>Name</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody id="body"></tbody>
-</table>
-
-<div class="summary">
-Present: <span id="present">0</span> |
-Absent: <span id="absent">0</span>
-</div>
-
-</div>
-
-<script>
 function toggleSubjects(){
-    const s=document.getElementById("subjectSelect");
-    s.style.display=s.style.display==="none"?"block":"none";
+    const s = document.getElementById("subjectSelect");
+    s.style.display = s.style.display === "none" ? "block" : "none";
 }
 
-const students=[
+const students = [
 {r:"99240040066",n:"JUJJAVARAPU RISHYENDRA"},
 {r:"99240040874",n:"CHALLA VARUN KUMAR"},
 {r:"99240040875",n:"CHALLA CHARUKESH"},
@@ -238,40 +75,36 @@ const students=[
 {r:"99240040953",n:"SALAVALAPUDI MADHUSUDHAN"}
 ];
 
-let presentCount=students.length;
-let absentCount=0;
+let presentCount = students.length;
+let absentCount = 0;
 
-const body=document.getElementById("body");
+const body = document.getElementById("body");
 
 students.forEach(s=>{
-    const tr=document.createElement("tr");
-    tr.innerHTML=`
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
         <td class="reg">${s.r}</td>
         <td class="name">${s.n}</td>
         <td><button class="present">Present</button></td>
     `;
-    const btn=tr.querySelector("button");
-    btn.onclick=()=>{
+    const btn = tr.querySelector("button");
+    btn.onclick = ()=>{
         if(btn.classList.contains("present")){
-            btn.className="absent";
-            btn.textContent="Absent";
+            btn.className = "absent";
+            btn.textContent = "Absent";
             presentCount--;
             absentCount++;
         }else{
-            btn.className="present";
-            btn.textContent="Present";
+            btn.className = "present";
+            btn.textContent = "Present";
             presentCount++;
             absentCount--;
         }
-        document.getElementById("present").textContent=presentCount;
-        document.getElementById("absent").textContent=absentCount;
+        document.getElementById("present").textContent = presentCount;
+        document.getElementById("absent").textContent = absentCount;
     };
     body.appendChild(tr);
 });
 
-document.getElementById("present").textContent=presentCount;
-document.getElementById("absent").textContent=absentCount;
-</script>
-
-</body>
-</html>
+document.getElementById("present").textContent = presentCount;
+document.getElementById("absent").textContent = absentCount;
