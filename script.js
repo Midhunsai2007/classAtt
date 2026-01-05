@@ -36,6 +36,8 @@ function submitAttendance() {
         return;
     }
 
+    const durationVal = document.getElementById("durationSelect").value;
+
     // Filter student objects who are in the absentRegs Set
     // We used 'students' array which is available in global scope
     const absentees = students.filter(s => absentRegs.has(s.r));
@@ -43,6 +45,7 @@ function submitAttendance() {
     const data = {
         date: dateVal,
         subject: selectedSubject,
+        duration: durationVal,
         absentees: absentees
     };
 
@@ -119,7 +122,7 @@ const students = [
     { r: "99240040949", n: "KANCHARLA POORNACHANDRA" },
     { r: "99240040950", n: "KANAKALA VENKATA PRADEEP" },
     { r: "99240040952", n: "RAYADURGAM NARAYANA REDDY" },
-    { r: "99240040953", n: "SALAVALAPUDI MADHUSUDHAN" }
+    { r: "99240040953", n: "SALAVALAPUDI HEMANTH" }
 ];
 
 let presentCount = students.length;

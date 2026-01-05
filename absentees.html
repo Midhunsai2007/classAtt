@@ -96,9 +96,12 @@
             const dateObj = new Date(data.date);
             const dateReadable = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
+            const durationText = data.duration === "2" ? "2 Hours (Lab)" : "1 Hour";
+
             document.getElementById("headerInfo").innerHTML = `
             Date: <strong>${dateReadable}</strong> <br>
-            Subject: <strong>${data.subject}</strong>
+            Subject: <strong>${data.subject}</strong> <br>
+            Duration: <strong>${durationText}</strong>
         `;
 
             const tbody = document.getElementById("listBody");
